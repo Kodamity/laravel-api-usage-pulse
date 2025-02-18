@@ -16,4 +16,6 @@ enum PulseRecordTypes: string
     case RequestsStatisticsTotal = 'kdm_api_usage_requests_total';
 
     case RequestsStatisticsSuccessful = 'kdm_api_usage_requests_successful';
+
+    case ResponsesStatisticsTime = 'kdm_api_usage_responses_time';
 }

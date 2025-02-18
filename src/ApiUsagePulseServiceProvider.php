@@ -20,6 +20,8 @@ class ApiUsagePulseServiceProvider extends PackageServiceProvider
     {
         $this->callAfterResolving('livewire', function (LivewireManager $livewire) {
             $livewire->component('kodamity.pulse.api-usage.requests-summary', Livewire\RequestsSummary::class);
+            $livewire->component('kodamity.pulse.api-usage.response-statuses-graph', Livewire\ResponseStatusesGraph::class);
+            $livewire->component('kodamity.pulse.api-usage.response-times-graph', Livewire\ResponseTimesGraph::class);
         });
     }
 }

@@ -15,7 +15,7 @@
         @else
             <div class="flex flex-col gap-6">
                 <div class="grid grid-cols-3 gap-3 text-center">
-                    <div class="flex flex-col justify-center @sm:block">
+                    <div class="flex flex-col justify-center">
                         <span class="text-xl uppercase font-bold text-gray-700 dark:text-gray-300 tabular-nums">
                             @if ($config['sample_rate'] < 1)
                                 <span title="Sample rate: {{ $config['sample_rate'] }}, Raw value: {{ number_format($totalRequests->total) }}">~{{ number_format($totalRequests->total * (1 / $config['sample_rate'])) }}</span>
@@ -27,7 +27,7 @@
                             Total
                         </span>
                     </div>
-                    <div class="flex flex-col justify-center @sm:block">
+                    <div class="flex flex-col justify-center">
                         <span class="text-xl uppercase font-bold text-gray-700 dark:text-gray-300 tabular-nums">
                             @if ($config['sample_rate'] < 1)
                                 <span title="Sample rate: {{ $config['sample_rate'] }}, Raw value: {{ number_format($totalRequests->success) }}">~{{ number_format(($totalRequests->success) * (1 / $config['sample_rate'])) }}</span>
@@ -39,7 +39,7 @@
                             Successful
                         </span>
                     </div>
-                    <div class="flex flex-col justify-center @sm:block">
+                    <div class="flex flex-col justify-center">
                         <span class="text-xl uppercase font-bold text-gray-700 dark:text-gray-300 tabular-nums">
                             {{ ((int) ($totalRequests->total / ($totalRequests->total + $totalRequests->success) * 10000)) / 100 }}%
                         </span>
