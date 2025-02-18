@@ -1,0 +1,30 @@
+laravel: '@testbench'
+
+providers:
+  - Kodamity\Libraries\ApiUsagePulse\ApiUsagePulseServiceProvider
+
+migrations:
+  - vendor/laravel/pulse/database/migrations
+
+workbench:
+  start: '/'
+  install: true
+  health: false
+  discovers:
+    config: true
+    api: true
+    web: false
+    commands: false
+    components: false
+    views: false
+  build:
+    - asset-publish
+    - create-sqlite-db
+    - db-wipe
+    - migrate-fresh
+  assets:
+    - laravel-assets
+  sync:
+    - from: storage
+      to: workbench/storage
+      reverse: true
