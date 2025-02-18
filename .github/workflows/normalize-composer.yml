@@ -1,0 +1,20 @@
+name: "Normalize composer.json files"
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - 'composer.json'
+      - '.github/workflows/normalize-composer.yml'
+
+  pull_request:
+
+permissions:
+  contents: write
+
+jobs:
+  normalize:
+    uses: kodamity/.github/.github/workflows/normalize-composer.yml@main

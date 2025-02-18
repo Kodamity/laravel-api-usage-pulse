@@ -1,0 +1,19 @@
+name: "Static Analysis"
+
+on:
+  push:
+    branches:
+      - '**'
+    paths:
+      - '**.php'
+      - 'phpstan.neon.dist'
+      - '.github/workflows/static-analysis.yml'
+
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  static-analysis:
+    uses: kodamity/.github/.github/workflows/static-analysis.yml@main

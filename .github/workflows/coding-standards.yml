@@ -1,0 +1,18 @@
+name: Fix PHP code style issues
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths:
+      - '**.php'
+      - '.github/workflows/coding-standards.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  php-code-styling:
+    uses: kodamity/.github/.github/workflows/coding-standards.yml@main

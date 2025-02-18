@@ -1,0 +1,27 @@
+includes:
+    - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ./vendor/nesbot/carbon/extension.neon
+    - ./vendor/larastan/larastan/extension.neon
+    - ./vendor/phpstan/phpstan-phpunit/extension.neon
+    - ./phpstan-baseline.neon
+
+parameters:
+    parallel:
+        processTimeout: 1200.0
+
+    paths:
+        - config
+        - database
+        - routes
+        - src
+
+    level: 5
+
+    excludePaths:
+        - *.php.stub
+        - *.stub
+        - *.blade.php
+
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
