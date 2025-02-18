@@ -35,8 +35,7 @@ class RequestsStatistics
     public function __construct(
         protected Pulse      $pulse,
         protected Repository $config,
-    )
-    {
+    ) {
         //
     }
 
@@ -73,14 +72,14 @@ class RequestsStatistics
 
             $this->pulse->record(
                 type: PulseRecordTypes::RequestsStatisticsTotal->value,
-                key: (string)$userId,
+                key: (string) $userId,
                 timestamp: $startedAt->getTimestamp(),
             )->count();
 
             if ($response->isSuccessful()) {
                 $this->pulse->record(
                     type: PulseRecordTypes::RequestsStatisticsSuccessful->value,
-                    key: (string)$userId,
+                    key: (string) $userId,
                     timestamp: $startedAt->getTimestamp(),
                 )->count();
             }
