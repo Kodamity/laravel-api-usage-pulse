@@ -51,9 +51,11 @@ class ResponseStatusesGraph extends Card
 
         $recordStatusFlag = [];
         foreach (ResponseStatusGroup::cases() as $status) {
-            if (in_array($status->value, Config::get('pulse.recorders.' . ResponsesStatistics::class . '.records', []))) {
-                $recordStatusFlag['record_' . $status->name] = true;
-            }
+            $recordStatusFlag['record_' . $status->name] = in_array(
+                $status->value,
+                Config::get('pulse.recorders.' . ResponsesStatistics::class . '.records', []),
+                true,
+            );
         }
 
         return View::make('api-usage-pulse::livewire.response-statuses-graph', [
