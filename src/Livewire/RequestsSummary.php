@@ -14,7 +14,7 @@ namespace Kodamity\Libraries\ApiUsagePulse\Livewire;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Kodamity\Libraries\ApiUsagePulse\Recorders\RequestsStatistics;
 use Laravel\Pulse\Facades\Pulse;
 use Laravel\Pulse\Livewire\Card;
@@ -35,14 +35,14 @@ class RequestsSummary extends Card
      */
     public function render(): Renderable
     {
-        $types = [PulseRecordTypes::RequestsStatisticsTotal->value, PulseRecordTypes::RequestsStatisticsSuccessful->value];
+        $types = [RecordTypes::RequestsStatisticsTotal->value, RecordTypes::RequestsStatisticsSuccessful->value];
 
         [$totalRequests, $allTime, $allRunAt] = $this->remember(
             fn () => with(
                 $this->aggregateTotal($types, 'count'),
                 fn ($results) => (object) [
-                    'total' => $results[PulseRecordTypes::RequestsStatisticsTotal->value] ?? 0,
-                    'success' => $results[PulseRecordTypes::RequestsStatisticsSuccessful->value] ?? 0,
+                    'total' => $results[RecordTypes::RequestsStatisticsTotal->value] ?? 0,
+                    'success' => $results[RecordTypes::RequestsStatisticsSuccessful->value] ?? 0,
                 ],
             ),
             'all',
@@ -54,8 +54,8 @@ class RequestsSummary extends Card
                     ->map(function ($row) {
                         return (object) [
                             'key' => $row->key,
-                            'total' => $row->{PulseRecordTypes::RequestsStatisticsTotal->value} ?? 0,
-                            'success' => $row->{PulseRecordTypes::RequestsStatisticsSuccessful->value} ?? 0,
+                            'total' => $row->{RecordTypes::RequestsStatisticsTotal->value} ?? 0,
+                            'success' => $row->{RecordTypes::RequestsStatisticsSuccessful->value} ?? 0,
                         ];
                     });
 

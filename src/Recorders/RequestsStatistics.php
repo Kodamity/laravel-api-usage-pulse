@@ -16,7 +16,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Laravel\Pulse\Concerns\ConfiguresAfterResolving;
 use Laravel\Pulse\Pulse;
 use Laravel\Pulse\Recorders\Concerns;
@@ -71,14 +71,14 @@ class RequestsStatistics
             }
 
             $this->pulse->record(
-                type: PulseRecordTypes::RequestsStatisticsTotal->value,
+                type: RecordTypes::RequestsStatisticsTotal->value,
                 key: (string) $userId,
                 timestamp: $startedAt->getTimestamp(),
             )->count();
 
             if ($response->isSuccessful()) {
                 $this->pulse->record(
-                    type: PulseRecordTypes::RequestsStatisticsSuccessful->value,
+                    type: RecordTypes::RequestsStatisticsSuccessful->value,
                     key: (string) $userId,
                     timestamp: $startedAt->getTimestamp(),
                 )->count();

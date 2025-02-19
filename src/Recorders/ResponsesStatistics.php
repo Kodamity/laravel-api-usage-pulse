@@ -17,8 +17,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordKeys;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordKeys;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Kodamity\Libraries\ApiUsagePulse\Enums\ResponseStatusGroup;
 use Laravel\Pulse\Concerns\ConfiguresAfterResolving;
 use Laravel\Pulse\Pulse;
@@ -78,14 +78,14 @@ class ResponsesStatistics
 
             $this->pulse->record(
                 type: $statusGroup->value,
-                key: PulseRecordKeys::ResponsesStatistics->value,
+                key: RecordKeys::ResponsesStatistics->value,
                 timestamp: $startedAt,
             )->count()->onlyBuckets();
 
             $duration = ((int) $startedAt->diffInMilliseconds());
             $this->pulse->record(
-                type: PulseRecordTypes::ResponsesStatisticsTime->value,
-                key: PulseRecordKeys::ResponsesStatistics->value,
+                type: RecordTypes::ResponsesStatisticsTime->value,
+                key: RecordKeys::ResponsesStatistics->value,
                 value: $duration,
                 timestamp: $startedAt,
             )->avg()->onlyBuckets();

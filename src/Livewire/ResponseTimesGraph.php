@@ -14,8 +14,8 @@ namespace Kodamity\Libraries\ApiUsagePulse\Livewire;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordKeys;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordKeys;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Kodamity\Libraries\ApiUsagePulse\Recorders\ResponsesStatistics;
 use Laravel\Pulse\Livewire\Card;
 use Laravel\Pulse\Livewire\Concerns;
@@ -34,11 +34,11 @@ class ResponseTimesGraph extends Card
     public function render(): Renderable
     {
         /* @phpstan-ignore return.type */
-        [$requests, $time, $runAt] = $this->remember(fn () => $this->graph([PulseRecordTypes::ResponsesStatisticsTime->value], 'avg'));
+        [$requests, $time, $runAt] = $this->remember(fn () => $this->graph([RecordTypes::ResponsesStatisticsTime->value], 'avg'));
 
         $dataset = $requests
-            ->get(PulseRecordKeys::ResponsesStatistics->value, collect())
-            ->get(PulseRecordTypes::ResponsesStatisticsTime->value, collect());
+            ->get(RecordKeys::ResponsesStatistics->value, collect())
+            ->get(RecordTypes::ResponsesStatisticsTime->value, collect());
 
         if (Livewire::isLivewireRequest()) {
             $this->dispatch('kdm-api-usage-response-times-chart-update', dataset: $dataset);

@@ -15,7 +15,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\View;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordKeys;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordKeys;
 use Kodamity\Libraries\ApiUsagePulse\Enums\ResponseStatusGroup;
 use Kodamity\Libraries\ApiUsagePulse\Recorders\ResponsesStatistics;
 use Laravel\Pulse\Livewire\Card;
@@ -40,7 +40,7 @@ class ResponseStatusesGraph extends Card
         [$requests, $time, $runAt] = $this->remember(fn () => $this->graph($statuses, 'count'));
 
         $datasets = $requests
-            ->get(PulseRecordKeys::ResponsesStatistics->value, collect())
+            ->get(RecordKeys::ResponsesStatistics->value, collect())
             ->mapWithKeys(function (Collection $item, string $key) {
                 return [ResponseStatusGroup::from($key)->name => $item];
             });

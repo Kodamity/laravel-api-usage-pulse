@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Kodamity\Libraries\ApiUsagePulse\Enums;
 
-enum PulseRecordTypes: string
+enum RecordTypes: string
 {
     case RequestsStatisticsTotal = 'kdm_api_usage_requests_total';
 

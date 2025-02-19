@@ -14,7 +14,7 @@ namespace Kodamity\Libraries\ApiUsagePulse\Tests\Recorders;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Kodamity\Libraries\ApiUsagePulse\Recorders\RequestsStatistics;
 use Kodamity\Libraries\ApiUsagePulse\Tests\TestCase;
 use Laravel\Pulse\Facades\Pulse;
@@ -46,7 +46,7 @@ class RequestsStatisticsTest extends TestCase
 
         Pulse::ignore(function () {
             $aggregatesRows = DB::table('pulse_aggregates')
-                ->where('type', PulseRecordTypes::RequestsStatisticsTotal)
+                ->where('type', RecordTypes::RequestsStatisticsTotal)
                 ->where('aggregate', 'count')
                 ->get();
             $this->assertCount(4, $aggregatesRows);
@@ -56,7 +56,7 @@ class RequestsStatisticsTest extends TestCase
             }
 
             $entriesRows = DB::table('pulse_entries')
-                ->where('type', PulseRecordTypes::RequestsStatisticsTotal)
+                ->where('type', RecordTypes::RequestsStatisticsTotal)
                 ->get();
 
             $this->assertCount(4, $entriesRows);
@@ -75,13 +75,13 @@ class RequestsStatisticsTest extends TestCase
 
         Pulse::ignore(function () {
             $aggregatesRows = DB::table('pulse_aggregates')
-                ->where('type', PulseRecordTypes::RequestsStatisticsTotal)
+                ->where('type', RecordTypes::RequestsStatisticsTotal)
                 ->where('aggregate', 'count')
                 ->get();
             $this->assertCount(4, $aggregatesRows);
 
             $successfulAggregatesRows = DB::table('pulse_aggregates')
-                ->where('type', PulseRecordTypes::RequestsStatisticsSuccessful)
+                ->where('type', RecordTypes::RequestsStatisticsSuccessful)
                 ->where('aggregate', 'count')
                 ->get();
             $this->assertCount(4, $successfulAggregatesRows);
@@ -91,7 +91,7 @@ class RequestsStatisticsTest extends TestCase
             }
 
             $entriesRows = DB::table('pulse_entries')
-                ->where('type', PulseRecordTypes::RequestsStatisticsSuccessful)
+                ->where('type', RecordTypes::RequestsStatisticsSuccessful)
                 ->get();
 
             $this->assertCount(2, $entriesRows);

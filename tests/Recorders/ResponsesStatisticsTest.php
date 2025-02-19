@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use Kodamity\Libraries\ApiUsagePulse\Enums\PulseRecordTypes;
+use Kodamity\Libraries\ApiUsagePulse\Enums\RecordTypes;
 use Kodamity\Libraries\ApiUsagePulse\Enums\ResponseStatusGroup;
 use Kodamity\Libraries\ApiUsagePulse\Recorders\ResponsesStatistics;
 use Kodamity\Libraries\ApiUsagePulse\Tests\TestCase;
@@ -44,7 +44,7 @@ class ResponsesStatisticsTest extends TestCase
             $this->assertCount(4, $aggregatesRows);
 
             $timesAggregatesRows = DB::table('pulse_aggregates')
-                ->where('type', PulseRecordTypes::ResponsesStatisticsTime->value)
+                ->where('type', RecordTypes::ResponsesStatisticsTime->value)
                 ->get();
 
             $this->assertCount(4, $timesAggregatesRows);

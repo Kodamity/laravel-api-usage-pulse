@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace Kodamity\Libraries\ApiUsagePulse\Enums;
 
-enum PulseRecordKeys: string
+enum RecordKeys: string
 {
     case ResponsesStatistics = 'kdm_api_usage_responses_statistics';
 }
