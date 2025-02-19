@@ -61,5 +61,11 @@ jobs:
       - name: List Installed Dependencies
         run: composer show -D
 
+      - name: Setup testbench
+        run: |
+          cp workbench/.env.example vendor/orchestra/testbench-core/laravel/.env
+          cp -r workbench/resources/views/vendor vendor/orchestra/testbench-core/laravel/resources/views/vendor
+          cp testbench.example.yaml testbench.yaml
+
       - name: Execute tests
         run: vendor/bin/pest --ci
