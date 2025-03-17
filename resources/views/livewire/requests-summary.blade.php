@@ -41,7 +41,7 @@
                     </div>
                     <div class="flex flex-col justify-center">
                         <span class="text-xl uppercase font-bold text-gray-700 dark:text-gray-300 tabular-nums">
-                            {{ ((int) ($totalRequests->total / ($totalRequests->total + $totalRequests->success) * 10000)) / 100 }}%
+                            {{ number_format($totalRequests->success / $totalRequests->total * 100, 2) }}%
                         </span>
                         <span class="text-xs uppercase font-bold text-gray-500 dark:text-gray-400">
                             Success Rate
@@ -87,7 +87,7 @@
                                     @endif
                                 </x-pulse::td>
                                 <x-pulse::td numeric class="text-gray-700 dark:text-gray-300 font-bold">
-                                    {{ ((int) ($row->total / ($row->total + $row->success) * 10000)) / 100 }}%
+                                    {{ number_format($row->success / $row->total * 100, 2) }}%
                                 </x-pulse::td>
                             </tr>
                         @endforeach
