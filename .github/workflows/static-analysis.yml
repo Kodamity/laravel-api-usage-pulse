@@ -7,6 +7,8 @@ on:
     paths:
       - '**.php'
       - 'phpstan.neon.dist'
+      - 'composer.json'
+      - 'composer.lock'
       - '.github/workflows/static-analysis.yml'
 
   pull_request:
